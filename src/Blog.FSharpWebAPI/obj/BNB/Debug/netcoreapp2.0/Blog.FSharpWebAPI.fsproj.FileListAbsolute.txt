@@ -1,0 +1,9 @@
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\WebRoot\main.css
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\web.config
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.deps.json
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.runtimeconfig.json
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.runtimeconfig.dev.json
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.dll
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\bin\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.pdb
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\obj\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.dll
+C:\Projects\Blog.FSharpWebAPI\src\Blog.FSharpWebAPI\obj\BNB\Debug\netcoreapp2.0\Blog.FSharpWebAPI.pdb
