@@ -12,8 +12,6 @@ type Label =
         Inactive: bool
     }
 
-
-
 type Message =
     {
         Text: string

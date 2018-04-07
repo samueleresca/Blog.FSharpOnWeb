@@ -3,7 +3,7 @@ open Microsoft.EntityFrameworkCore
 open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.DataAccess
 
-module SerieRepository =
+module LabelsRepository =
     let getLabel (context: LabelsContext) id =
         context.Labels
         |> Seq.tryFind (fun f -> f.Id = id) 

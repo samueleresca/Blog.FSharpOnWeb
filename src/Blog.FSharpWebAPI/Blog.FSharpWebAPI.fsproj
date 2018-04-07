@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositionRoot.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="DataAccess.fs" />
     <Compile Include="Repositories.fs" />
