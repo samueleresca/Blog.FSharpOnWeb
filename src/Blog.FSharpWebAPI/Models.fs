@@ -3,6 +3,7 @@ module Blog.FSharpWebAPI.Models
 // Models
 // ---------------------------------
 
+[<CLIMutable>]
 type Label =
     {
         Id : int
@@ -16,3 +17,4 @@ type Message =
     {
         Text: string
     }
+

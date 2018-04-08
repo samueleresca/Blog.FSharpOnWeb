@@ -10,8 +10,8 @@ type LabelsContext =
     
     new() = { inherit DbContext() }
     new(options: DbContextOptions<LabelsContext>) = { inherit DbContext(options) }
-
-
+      
+      
     [<DefaultValue>]
     val mutable labels:DbSet<Label>
     member x.Labels 

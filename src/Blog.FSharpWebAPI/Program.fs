@@ -9,6 +9,7 @@ open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
 open Giraffe
 open Blog.FSharpWebAPI.Models
+open Blog.FSharpWebAPI.Handlers
 
 
 // ---------------------------------
@@ -45,8 +46,7 @@ module Views =
 let indexHandler (name : string) =
     let greetings = sprintf "Hello %s, from Giraffe!" name
     let model     = { Text = greetings }
-    let view      = Views.index model
-    htmlView view
+    json model
 
 let webApp =
     choose [
@@ -55,6 +55,7 @@ let webApp =
                 route "/" >=> indexHandler "world"
                 routef "/hello/%s" indexHandler
                 route "/hello-json" >=> json [| "Hello,"; "use"; "JSON!" |]
+                route "/labels" >=> labelsHandler "Ciao"
             ]
         setStatusCode 404 >=> text "Not Found" ]
 

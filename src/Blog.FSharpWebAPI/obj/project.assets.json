@@ -661,10 +661,10 @@
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/2.0.0": {
+      "Microsoft.Extensions.DependencyInjection/2.1.0-preview1-final": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0-preview1-final"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {}
@@ -3009,14 +3009,14 @@
         "microsoft.extensions.configuration.fileextensions.nuspec"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection/2.0.0": {
-      "sha512": "wakg18gHYiUL1pcjjyZuYk6OvDpbSw1E7IWxm78TMepsr+gQ8W0tWzuRm0q/9RFblngwPwo15rrgZSUV51W5Iw==",
+    "Microsoft.Extensions.DependencyInjection/2.1.0-preview1-final": {
+      "sha512": "UuyuXJ92DAsrSuDgwQuLq933QIRcl7YsVt1g+gP7aLrh5VXul+oyuG48jcJWJHVTYc9ndKNJV4mRBeEH9hElLA==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection/2.0.0",
+      "path": "microsoft.extensions.dependencyinjection/2.1.0-preview1-final",
       "files": [
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
-        "microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.2.1.0-preview1-final.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.nuspec"
       ]
     },
@@ -7661,7 +7661,6 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.0-preview1-final",
       "Microsoft.EntityFrameworkCore.Tools >= 2.1.0-preview1-final",
       "Microsoft.EntityFrameworkCore.Tools.DotNet >= 2.1.0-preview1-final",
-      "Microsoft.Extensions.DependencyInjection >= 2.0.*",
       "Microsoft.Extensions.Logging.Console >= 2.0.*",
       "Microsoft.Extensions.Logging.Debug >= 2.0.*",
       "Microsoft.NETCore.App >= 2.0.0"
@@ -7753,10 +7752,6 @@
             "target": "Package",
             "version": "[2.1.0-preview1-final, )"
           },
-          "Microsoft.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "[2.0.*, )"
-          },
           "Microsoft.Extensions.Logging.Console": {
             "target": "Package",
             "version": "[2.0.*, )"
@@ -7778,27 +7773,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: Microsoft.Extensions.DependencyInjection from 2.1.0-preview1-final to 2.0.0. Reference the package directly from the project to select a different version. \n Blog.FSharpWebAPI -> Microsoft.EntityFrameworkCore.Design 2.1.0-preview1-final -> Microsoft.EntityFrameworkCore.Relational 2.1.0-preview1-final -> Microsoft.EntityFrameworkCore 2.1.0-preview1-final -> Microsoft.Extensions.DependencyInjection (>= 2.1.0-preview1-final) \n Blog.FSharpWebAPI -> Microsoft.Extensions.DependencyInjection (>= 2.0.0)",
-      "libraryId": "Microsoft.Extensions.DependencyInjection",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: Microsoft.Extensions.DependencyInjection from 2.1.0-preview1-final to 2.0.0. Reference the package directly from the project to select a different version. \n Blog.FSharpWebAPI -> Microsoft.EntityFrameworkCore.SqlServer 2.1.0-preview1-final -> Microsoft.EntityFrameworkCore.Relational 2.1.0-preview1-final -> Microsoft.EntityFrameworkCore 2.1.0-preview1-final -> Microsoft.Extensions.DependencyInjection (>= 2.1.0-preview1-final) \n Blog.FSharpWebAPI -> Microsoft.Extensions.DependencyInjection (>= 2.0.0)",
-      "libraryId": "Microsoft.Extensions.DependencyInjection",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

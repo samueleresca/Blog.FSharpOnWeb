@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "2cac05045251893aca2d1ea912dbc7a9d9d83a07"
+    "signature": "a363e03f4b1200ed6022974ac0f8709dddcbb8d7"
   },
   "compilationOptions": {
     "defines": [
@@ -36,7 +36,6 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.0-preview1-final",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.0-preview1-final",
           "Microsoft.EntityFrameworkCore.Tools.DotNet": "2.1.0-preview1-final",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
           "Microsoft.Extensions.Logging.Console": "2.0.1",
           "Microsoft.Extensions.Logging.Debug": "2.0.1",
           "Microsoft.NETCore.App": "2.0.0"
@@ -277,7 +276,7 @@
           "Microsoft.Extensions.Configuration": "2.1.0-preview1-final",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "2.0.1",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection": "2.1.0-preview1-final",
           "Microsoft.Extensions.FileProviders.Physical": "2.0.1",
           "Microsoft.Extensions.Logging": "2.1.0-preview1-final",
           "Microsoft.Extensions.Options": "2.1.0-preview1-final",
@@ -493,7 +492,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Attributes": "2.1.0-preview1-final",
           "Microsoft.Extensions.Caching.Memory": "2.1.0-preview1-final",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection": "2.1.0-preview1-final",
           "Microsoft.Extensions.Logging": "2.1.0-preview1-final",
           "Remotion.Linq": "2.2.0-alpha-002",
           "System.Collections.Immutable": "1.5.0-preview1-26216-02",
@@ -648,7 +647,7 @@
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/2.0.0": {
+      "Microsoft.Extensions.DependencyInjection/2.1.0-preview1-final": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0-preview1-final"
         },
@@ -2293,12 +2292,12 @@
       "path": "microsoft.extensions.configuration.fileextensions/2.0.1",
       "hashPath": "microsoft.extensions.configuration.fileextensions.2.0.1.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection/2.0.0": {
+    "Microsoft.Extensions.DependencyInjection/2.1.0-preview1-final": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wakg18gHYiUL1pcjjyZuYk6OvDpbSw1E7IWxm78TMepsr+gQ8W0tWzuRm0q/9RFblngwPwo15rrgZSUV51W5Iw==",
-      "path": "microsoft.extensions.dependencyinjection/2.0.0",
-      "hashPath": "microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512"
+      "sha512": "sha512-UuyuXJ92DAsrSuDgwQuLq933QIRcl7YsVt1g+gP7aLrh5VXul+oyuG48jcJWJHVTYc9ndKNJV4mRBeEH9hElLA==",
+      "path": "microsoft.extensions.dependencyinjection/2.1.0-preview1-final",
+      "hashPath": "microsoft.extensions.dependencyinjection.2.1.0-preview1-final.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.0-preview1-final": {
       "type": "package",
