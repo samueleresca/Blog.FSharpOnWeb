@@ -22,6 +22,8 @@ let labelAddHandler : HttpHandler =
       fun (next : HttpFunc) (ctx : HttpContext) ->
           task {
               let! label = ctx.BindJsonAsync<Label>()
+                          
               let addedLabel = addLabelAsync label 
+                               |> Async.RunSynchronously
               return! Successful.OK addedLabel next ctx
            }
