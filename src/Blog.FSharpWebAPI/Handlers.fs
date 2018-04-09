@@ -17,3 +17,11 @@ let labelHandler(id: int) =
                      | Some l -> ctx.WriteJsonAsync l
                      | None   -> (setStatusCode 400 >=> json "label not found") next ctx
   
+  
+let labelAddHandler : HttpHandler =
+      fun (next : HttpFunc) (ctx : HttpContext) ->
+          task {
+              let! label = ctx.BindJsonAsync<Label>()
+              let addedLabel = addLabelAsync label 
+              return! Successful.OK addedLabel next ctx
+           }

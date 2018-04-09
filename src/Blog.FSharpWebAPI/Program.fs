@@ -10,6 +10,7 @@ open Microsoft.Extensions.DependencyInjection
 open Giraffe
 open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.Handlers
+open CompostionRoot
 
 // ---------------------------------
 // Web app
@@ -28,6 +29,7 @@ let webApp =
                 route "/label" >=>  labelsHandler 
                 routef "/label/%i" labelHandler 
             ]
+        POST >=> route "/label" >=> labelAddHandler
         setStatusCode 404 >=> text "Not Found" ]
 
 // ---------------------------------
