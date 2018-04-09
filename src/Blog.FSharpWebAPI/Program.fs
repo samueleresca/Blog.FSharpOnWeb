@@ -11,34 +11,6 @@ open Giraffe
 open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.Handlers
 
-
-// ---------------------------------
-// Views
-// ---------------------------------
-
-module Views =
-    open GiraffeViewEngine
-
-    let layout (content: XmlNode list) =
-        html [] [
-            head [] [
-                title []  [ encodedText "Blog.FSharpWebAPI" ]
-                link [ _rel  "stylesheet"
-                       _type "text/css"
-                       _href "/main.css" ]
-            ]
-            body [] content
-        ]
-
-    let partial () =
-        h1 [] [ encodedText "Blog.FSharpWebAPI" ]
-
-    let index (model : Message) =
-        [
-            partial()
-            p [] [ encodedText model.Text ]
-        ] |> layout
-
 // ---------------------------------
 // Web app
 // ---------------------------------
@@ -53,9 +25,8 @@ let webApp =
         GET >=>
             choose [
                 route "/" >=> indexHandler "world"
-                routef "/hello/%s" indexHandler
-                route "/hello-json" >=> json [| "Hello,"; "use"; "JSON!" |]
-                route "/labels" >=> labelsHandler "Ciao"
+                route "/label" >=>  labelsHandler 
+                routef "/label/%i" labelHandler 
             ]
         setStatusCode 404 >=> text "Not Found" ]
 

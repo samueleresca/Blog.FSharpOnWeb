@@ -15,6 +15,7 @@ let configureSqlServerContext =
     )
 
 let getContext = configureSqlServerContext()
+let getAll  = LabelsRepository.getAll getContext
 let getLabel  = LabelsRepository.getLabel getContext
 let addLabel = LabelsRepository.addLabel getContext
 let addLabelAsync = LabelsRepository.addLabelAsync getContext

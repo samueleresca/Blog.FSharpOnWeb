@@ -4,6 +4,10 @@ open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.DataAccess
 
 module LabelsRepository =
+
+    let getAll (context: LabelsContext) =
+            context.Labels
+        
     let getLabel (context: LabelsContext) id =
         context.Labels
         |> Seq.tryFind (fun f -> f.Id = id) 
