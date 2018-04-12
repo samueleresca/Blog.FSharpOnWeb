@@ -8,6 +8,7 @@ open System
 
 let labelsHandler = fun (next : HttpFunc) (ctx : HttpContext) -> getAll |> ctx.WriteJsonAsync
 
+
 let labelHandler (id : int) = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         getLabel id |> function 

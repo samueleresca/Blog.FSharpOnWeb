@@ -11,6 +11,11 @@ type LabelsContext =
     new() = { inherit DbContext() }
     new(options: DbContextOptions<LabelsContext>) = { inherit DbContext(options) }
       
+    
+    override __.OnModelCreating modelBuilder = 
+         modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj) |> ignore
+         modelBuilder.Entity<Label>().Property(fun label -> (label.Code)).IsUnicode() |> ignore
+    
       
     [<DefaultValue>]
     val mutable labels:DbSet<Label>
