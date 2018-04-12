@@ -48,25 +48,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Handlers.fs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Handlers.fs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Handlers.fs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="151">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding>
-                <marker date="1523564035502" expanded="true" signature="33:1152" ph=" ..." />
-                <marker date="1523564035502" expanded="true" signature="40:140" ph="..." />
-                <marker date="1523564035502" expanded="true" signature="265:466" ph=" =  ..." />
-                <marker date="1523564035502" expanded="true" signature="294:466" ph=" (ctx : HttpContext) -&gt;  ..." />
-                <marker date="1523564035502" expanded="true" signature="350:466" ph="  ..." />
-                <marker date="1523564035502" expanded="true" signature="487:766" ph=" : HttpHandler =  ..." />
-                <marker date="1523564035502" expanded="true" signature="530:766" ph=" (ctx : HttpContext) -&gt;  ..." />
-                <marker date="1523564035502" expanded="true" signature="569:765" ph="  ..." />
-                <marker date="1523564035502" expanded="true" signature="790:1152" ph=" =  ..." />
-                <marker date="1523564035502" expanded="true" signature="819:1152" ph=" (ctx : HttpContext) -&gt;  ..." />
-                <marker date="1523564035502" expanded="true" signature="858:1151" ph="  ..." />
-                <marker date="1523564035502" expanded="true" signature="934:1115" ph=" =  ..." />
-                <marker date="1523564035502" expanded="true" signature="983:1115" ph="  ..." />
+                <marker date="1523565444190" expanded="true" signature="33:1317" ph=" ..." />
+                <marker date="1523565444190" expanded="true" signature="40:140" ph="..." />
+                <marker date="1523565444190" expanded="true" signature="264:465" ph=" =  ..." />
+                <marker date="1523565444190" expanded="true" signature="293:465" ph=" (ctx : HttpContext) -&gt;  ..." />
+                <marker date="1523565444190" expanded="true" signature="349:465" ph="  ..." />
+                <marker date="1523565444190" expanded="true" signature="486:931" ph=" : HttpHandler =  ..." />
+                <marker date="1523565444190" expanded="true" signature="529:931" ph=" (ctx : HttpContext) -&gt;  ..." />
+                <marker date="1523565444190" expanded="true" signature="568:930" ph="  ..." />
+                <marker date="1523565444190" expanded="true" signature="644:894" ph=" =  ..." />
+                <marker date="1523565444190" expanded="true" signature="753:894" ph="  ..." />
+                <marker date="1523565444190" expanded="true" signature="955:1317" ph=" =  ..." />
+                <marker date="1523565444190" expanded="true" signature="984:1317" ph=" (ctx : HttpContext) -&gt;  ..." />
+                <marker date="1523565444190" expanded="true" signature="1023:1316" ph="  ..." />
+                <marker date="1523565444190" expanded="true" signature="1099:1280" ph=" =  ..." />
+                <marker date="1523565444190" expanded="true" signature="1148:1280" ph="  ..." />
               </folding>
             </state>
           </provider>
@@ -75,15 +77,15 @@
       <file leaf-file-name="Repositories.fs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Repositories.fs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+            <state relative-caret-position="120">
+              <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
               <folding>
-                <marker date="1523562231508" expanded="true" signature="47:140" ph="..." />
-                <marker date="1523562231508" expanded="true" signature="165:1041" ph=" =  ..." />
-                <marker date="1523562231508" expanded="true" signature="395:618" ph=" =  ..." />
-                <marker date="1523562231508" expanded="true" signature="414:617" ph="  ..." />
-                <marker date="1523562231508" expanded="true" signature="683:769" ph=" =  ..." />
-                <marker date="1523562231508" expanded="true" signature="837:1041" ph=" =  ..." />
+                <marker date="1523565490191" expanded="true" signature="47:140" ph="..." />
+                <marker date="1523565490191" expanded="true" signature="165:1132" ph=" =  ..." />
+                <marker date="1523565490191" expanded="true" signature="395:704" ph=" =  ..." />
+                <marker date="1523565490191" expanded="true" signature="414:703" ph="  ..." />
+                <marker date="1523565490191" expanded="true" signature="769:860" ph=" =  ..." />
+                <marker date="1523565490191" expanded="true" signature="928:1132" ph=" =  ..." />
               </folding>
             </state>
           </provider>
@@ -92,8 +94,8 @@
       <file leaf-file-name="AsyncBuilderImpl.cs" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/59964CAE-904C-F4DA-A745-0383AE4C9659/2b/5fa83857/AsyncBuilderImpl.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="927" column="10" selection-start-line="927" selection-start-column="10" selection-end-line="927" selection-end-column="10" />
+            <state relative-caret-position="304">
+              <caret line="959" column="28" selection-start-line="959" selection-start-column="28" selection-end-line="959" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -101,8 +103,8 @@
       <file leaf-file-name="CompositionRoot.fs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CompositionRoot.fs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+            <state relative-caret-position="300">
+              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
               <folding>
                 <marker date="1523562255418" expanded="true" signature="21:816" ph=" ..." />
                 <marker date="1523562255418" expanded="true" signature="28:158" ph="..." />
@@ -139,17 +141,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataAccess.fs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataAccess.fs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataAccess.fs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state relative-caret-position="285">
+              <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding>
-                <marker date="1523564743505" expanded="true" signature="35:733" ph=" ..." />
-                <marker date="1523564743505" expanded="true" signature="41:166" ph="..." />
-                <marker date="1523564743505" expanded="true" signature="188:733" ph="= ..." />
-                <marker date="1523564743505" expanded="true" signature="392:578" ph=" =  ..." />
-                <marker date="1523564743505" expanded="true" signature="667:733" ph="  ..." />
+                <marker date="1523565698666" expanded="true" signature="35:734" ph=" ..." />
+                <marker date="1523565698666" expanded="true" signature="41:166" ph="..." />
+                <marker date="1523565698666" expanded="true" signature="188:734" ph="= ..." />
+                <marker date="1523565698666" expanded="true" signature="392:579" ph=" =  ..." />
+                <marker date="1523565698666" expanded="true" signature="668:734" ph="  ..." />
               </folding>
             </state>
           </provider>
@@ -185,11 +187,11 @@
       <list>
         <option value="$PROJECT_DIR$/Blog.FSharpWebAPI.fsproj" />
         <option value="$PROJECT_DIR$/Program.fs" />
-        <option value="$PROJECT_DIR$/Repositories.fs" />
         <option value="$PROJECT_DIR$/CompositionRoot.fs" />
         <option value="$PROJECT_DIR$/Models.fs" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Handlers.fs" />
+        <option value="$PROJECT_DIR$/Repositories.fs" />
         <option value="$PROJECT_DIR$/DataAccess.fs" />
       </list>
     </option>
@@ -280,12 +282,12 @@
       <updated>1523103775257</updated>
       <workItem from="1523103779686" duration="2165000" />
       <workItem from="1523108155135" duration="10340000" />
-      <workItem from="1523217372012" duration="17856000" />
+      <workItem from="1523217372012" duration="18576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30361000" />
+    <option name="totallyTimeSpent" value="31081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -305,7 +307,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Unit Tests" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32943925" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32943925" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" weight="0.32943925" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32943925" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.32943925" />
@@ -314,7 +316,7 @@
       <window_info anchor="bottom" id="Build" order="7" weight="0.32943925" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995327" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3995327" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -370,33 +372,33 @@
               <startOffset value="428" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="512" />
+              <endOffset value="460" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Repositories.fs</url>
-          <line>20</line>
+          <line>22</line>
           <properties documentPath="$PROJECT_DIR$/Repositories.fs" initialLine="20">
             <startOffsets>
-              <startOffset value="695" />
+              <startOffset value="781" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="731" />
+              <endOffset value="817" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Repositories.fs</url>
-          <line>25</line>
+          <line>27</line>
           <properties documentPath="$PROJECT_DIR$/Repositories.fs" initialLine="25">
             <startOffsets>
-              <startOffset value="907" />
+              <startOffset value="998" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="966" />
+              <endOffset value="1057" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
@@ -406,16 +408,68 @@
           <line>21</line>
           <properties documentPath="$PROJECT_DIR$/Handlers.fs" initialLine="21">
             <startOffsets>
-              <startOffset value="635" />
+              <startOffset value="648" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="697" />
+              <endOffset value="684" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Handlers.fs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Handlers.fs" initialLine="26">
+            <startOffsets>
+              <startOffset value="907" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="921" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Repositories.fs</url>
+          <line>17</line>
+          <properties documentPath="$PROJECT_DIR$/Repositories.fs" initialLine="17">
+            <startOffsets>
+              <startOffset value="626" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="668" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Repositories.fs</url>
+          <line>18</line>
+          <properties documentPath="$PROJECT_DIR$/Repositories.fs" initialLine="18">
+            <startOffsets>
+              <startOffset value="681" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="694" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Repositories.fs</url>
+          <line>16</line>
+          <properties documentPath="$PROJECT_DIR$/Repositories.fs" initialLine="16">
+            <startOffsets>
+              <startOffset value="538" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="600" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -456,19 +510,21 @@
         <state relative-caret-position="60">
           <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding>
-            <marker date="1523564035502" expanded="true" signature="33:1152" ph=" ..." />
-            <marker date="1523564035502" expanded="true" signature="40:140" ph="..." />
-            <marker date="1523564035502" expanded="true" signature="265:466" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="294:466" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="350:466" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="487:766" ph=" : HttpHandler =  ..." />
-            <marker date="1523564035502" expanded="true" signature="530:766" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="569:765" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="790:1152" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="819:1152" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="858:1151" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="934:1115" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="983:1115" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="33:1317" ph=" ..." />
+            <marker date="1523565444190" expanded="true" signature="40:140" ph="..." />
+            <marker date="1523565444190" expanded="true" signature="264:465" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="293:465" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="349:465" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="486:931" ph=" : HttpHandler =  ..." />
+            <marker date="1523565444190" expanded="true" signature="529:931" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="568:930" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="644:894" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="753:894" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="955:1317" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="984:1317" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="1023:1316" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="1099:1280" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="1148:1280" ph="  ..." />
           </folding>
         </state>
       </provider>
@@ -478,12 +534,12 @@
         <state relative-caret-position="120">
           <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
           <folding>
-            <marker date="1523562231508" expanded="true" signature="47:140" ph="..." />
-            <marker date="1523562231508" expanded="true" signature="165:1041" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="395:618" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="414:617" ph="  ..." />
-            <marker date="1523562231508" expanded="true" signature="683:769" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="837:1041" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="47:140" ph="..." />
+            <marker date="1523565490191" expanded="true" signature="165:1132" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="395:704" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="414:703" ph="  ..." />
+            <marker date="1523565490191" expanded="true" signature="769:860" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="928:1132" ph=" =  ..." />
           </folding>
         </state>
       </provider>
@@ -522,11 +578,11 @@
         <state relative-caret-position="225">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
           <folding>
-            <marker date="1523564743505" expanded="true" signature="35:733" ph=" ..." />
-            <marker date="1523564743505" expanded="true" signature="41:166" ph="..." />
-            <marker date="1523564743505" expanded="true" signature="188:733" ph="= ..." />
-            <marker date="1523564743505" expanded="true" signature="392:578" ph=" =  ..." />
-            <marker date="1523564743505" expanded="true" signature="667:733" ph="  ..." />
+            <marker date="1523565698666" expanded="true" signature="35:734" ph=" ..." />
+            <marker date="1523565698666" expanded="true" signature="41:166" ph="..." />
+            <marker date="1523565698666" expanded="true" signature="188:734" ph="= ..." />
+            <marker date="1523565698666" expanded="true" signature="392:579" ph=" =  ..." />
+            <marker date="1523565698666" expanded="true" signature="668:734" ph="  ..." />
           </folding>
         </state>
       </provider>
@@ -587,19 +643,6 @@
         <state relative-caret-position="-292" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CompositionRoot.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding>
-            <marker date="1523562255418" expanded="true" signature="21:816" ph=" ..." />
-            <marker date="1523562255418" expanded="true" signature="28:158" ph="..." />
-            <marker date="1523562255418" expanded="true" signature="189:495" ph=" =  ..." />
-            <marker date="1523562255418" expanded="true" signature="204:489" ph=" -&gt; ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Program.fs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -625,13 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/59964CAE-904C-F4DA-A745-0383AE4C9659/2b/5fa83857/AsyncBuilderImpl.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="927" column="10" selection-start-line="927" selection-start-column="10" selection-end-line="927" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Models.fs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -654,53 +690,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Repositories.fs">
+    <entry file="file://$PROJECT_DIR$/CompositionRoot.fs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="300">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding>
-            <marker date="1523562231508" expanded="true" signature="47:140" ph="..." />
-            <marker date="1523562231508" expanded="true" signature="165:1041" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="395:618" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="414:617" ph="  ..." />
-            <marker date="1523562231508" expanded="true" signature="683:769" ph=" =  ..." />
-            <marker date="1523562231508" expanded="true" signature="837:1041" ph=" =  ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataAccess.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding>
-            <marker date="1523564743505" expanded="true" signature="35:733" ph=" ..." />
-            <marker date="1523564743505" expanded="true" signature="41:166" ph="..." />
-            <marker date="1523564743505" expanded="true" signature="188:733" ph="= ..." />
-            <marker date="1523564743505" expanded="true" signature="392:578" ph=" =  ..." />
-            <marker date="1523564743505" expanded="true" signature="667:733" ph="  ..." />
+            <marker date="1523562255418" expanded="true" signature="21:816" ph=" ..." />
+            <marker date="1523562255418" expanded="true" signature="28:158" ph="..." />
+            <marker date="1523562255418" expanded="true" signature="189:495" ph=" =  ..." />
+            <marker date="1523562255418" expanded="true" signature="204:489" ph=" -&gt; ..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Handlers.fs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        <state relative-caret-position="151">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding>
-            <marker date="1523564035502" expanded="true" signature="33:1152" ph=" ..." />
-            <marker date="1523564035502" expanded="true" signature="40:140" ph="..." />
-            <marker date="1523564035502" expanded="true" signature="265:466" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="294:466" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="350:466" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="487:766" ph=" : HttpHandler =  ..." />
-            <marker date="1523564035502" expanded="true" signature="530:766" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="569:765" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="790:1152" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="819:1152" ph=" (ctx : HttpContext) -&gt;  ..." />
-            <marker date="1523564035502" expanded="true" signature="858:1151" ph="  ..." />
-            <marker date="1523564035502" expanded="true" signature="934:1115" ph=" =  ..." />
-            <marker date="1523564035502" expanded="true" signature="983:1115" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="33:1317" ph=" ..." />
+            <marker date="1523565444190" expanded="true" signature="40:140" ph="..." />
+            <marker date="1523565444190" expanded="true" signature="264:465" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="293:465" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="349:465" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="486:931" ph=" : HttpHandler =  ..." />
+            <marker date="1523565444190" expanded="true" signature="529:931" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="568:930" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="644:894" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="753:894" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="955:1317" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="984:1317" ph=" (ctx : HttpContext) -&gt;  ..." />
+            <marker date="1523565444190" expanded="true" signature="1023:1316" ph="  ..." />
+            <marker date="1523565444190" expanded="true" signature="1099:1280" ph=" =  ..." />
+            <marker date="1523565444190" expanded="true" signature="1148:1280" ph="  ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/59964CAE-904C-F4DA-A745-0383AE4C9659/2b/5fa83857/AsyncBuilderImpl.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="959" column="28" selection-start-line="959" selection-start-column="28" selection-end-line="959" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Repositories.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+          <folding>
+            <marker date="1523565490191" expanded="true" signature="47:140" ph="..." />
+            <marker date="1523565490191" expanded="true" signature="165:1132" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="395:704" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="414:703" ph="  ..." />
+            <marker date="1523565490191" expanded="true" signature="769:860" ph=" =  ..." />
+            <marker date="1523565490191" expanded="true" signature="928:1132" ph=" =  ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataAccess.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding>
+            <marker date="1523565698666" expanded="true" signature="35:734" ph=" ..." />
+            <marker date="1523565698666" expanded="true" signature="41:166" ph="..." />
+            <marker date="1523565698666" expanded="true" signature="188:734" ph="= ..." />
+            <marker date="1523565698666" expanded="true" signature="392:579" ph=" =  ..." />
+            <marker date="1523565698666" expanded="true" signature="668:734" ph="  ..." />
           </folding>
         </state>
       </provider>

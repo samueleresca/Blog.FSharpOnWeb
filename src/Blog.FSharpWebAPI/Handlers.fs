@@ -8,7 +8,6 @@ open System
 
 let labelsHandler = fun (next : HttpFunc) (ctx : HttpContext) -> getAll |> ctx.WriteJsonAsync
 
-
 let labelHandler (id : int) = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         getLabel id |> function 
@@ -19,8 +18,13 @@ let labelAddHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         task { 
             let! label = ctx.BindJsonAsync<Label>()
-            let addedLabel = addLabelAsync label |> Async.RunSynchronously
-            return! Successful.CREATED addedLabel next ctx
+            let result = 
+                addLabelAsync label
+                |> Async.RunSynchronously
+                |> function 
+                | Some l -> Successful.CREATED l next ctx
+                | None -> (setStatusCode 400 >=> json "label not found") next ctx
+            return! result
         }
 
 let labelUpdateHandler = 

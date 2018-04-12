@@ -13,13 +13,15 @@ module LabelsRepository =
             context.Labels.AddAsync(entity)
             |> Async.AwaitTask
             |> ignore
-            let! _ = context.SaveChangesAsync true |> Async.AwaitTask
-            return entity
+            
+            let! result = context.SaveChangesAsync true |> Async.AwaitTask
+            let result = if result > 1  then Some(entity) else None
+            return result
         }
     
     let addLabel (context : LabelsContext) (entity : Label) = 
         context.Labels.Add(entity) |> ignore
-        context.SaveChanges |> ignore
+        context.SaveChanges true |> ignore
     
     let updateLabel (context : LabelsContext) (entity : Label) = 
         let currentEntry = context.Labels.Find(entity.Id)
