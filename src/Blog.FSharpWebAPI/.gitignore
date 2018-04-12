@@ -242,5 +242,5 @@ msbuild.binlog
 /fcs/FSharp.Compiler.Service.netstandard/*.fs
 /fcs/FSharp.Compiler.Service.netstandard/*.fsi
 
-/obj/
-/bin/
+obj/
+bin/

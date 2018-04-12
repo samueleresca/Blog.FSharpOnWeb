@@ -30,6 +30,8 @@ let webApp =
                 routef "/label/%i" labelHandler 
             ]
         POST >=> route "/label" >=> labelAddHandler
+        PUT >=> route "/label" >=> labelUpdateHandler
+        
         setStatusCode 404 >=> text "Not Found" ]
 
 // ---------------------------------
