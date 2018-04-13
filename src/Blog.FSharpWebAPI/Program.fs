@@ -65,7 +65,8 @@ let configureApp (app : IApplicationBuilder) =
 
 let configureServices (services : IServiceCollection) =
     services.AddDbContext<LabelsContext>(fun (options: DbContextOptionsBuilder) -> 
-                                                options.UseSqlServer("Data Source=(localdb)\Projects;Initial Catalog=ContentDataDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") |> ignore) |> ignore
+                                                options.UseSqlServer(@"Server=localhost;Database=ContentDataDB2;User Id=sa;
+                                                                                                           Password=P@55w0rd;") |> ignore) |> ignore
     services.AddCors()    |> ignore
     services.AddGiraffe() |> ignore
    
