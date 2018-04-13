@@ -2,7 +2,6 @@ module CompostionRoot
 
 open Blog.FSharpWebAPI.Repositories
 open Blog.FSharpWebAPI.DataAccess
-open Blog.FSharpWebAPI.Models
 
 open Microsoft.EntityFrameworkCore
 
@@ -14,7 +13,6 @@ let configureSqlServerContext =
     )
 
 let getContext = configureSqlServerContext()
-
 let getAll  = LabelsRepository.getAll getContext
 let getLabel  = LabelsRepository.getLabel getContext
 let addLabelAsync = LabelsRepository.addLabelAsync getContext
