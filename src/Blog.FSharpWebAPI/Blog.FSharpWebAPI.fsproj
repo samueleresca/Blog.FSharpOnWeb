@@ -26,7 +26,6 @@
   <ItemGroup>
     <Compile Include="Models.fs" />
     <Compile Include="DataAccess.fs" />
-    <Compile Include="Repositories.fs" />
     <Compile Include="CompositionRoot.fs" />
     <Compile Include="Handlers.fs" />
     <Compile Include="Program.fs" />

@@ -1,8 +1,6 @@
 module CompostionRoot
 
-open Blog.FSharpWebAPI.Repositories
 open Blog.FSharpWebAPI.DataAccess
-
 open Microsoft.EntityFrameworkCore
 
 let configureSqlServerContext = 
