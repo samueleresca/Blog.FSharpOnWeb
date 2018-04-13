@@ -2,7 +2,6 @@ namespace Blog.FSharpWebAPI.Repositories
 
 open Blog.FSharpWebAPI.DataAccess
 open Blog.FSharpWebAPI.Models
-open Microsoft.EntityFrameworkCore
 
 module LabelsRepository = 
     let getAll (context : LabelsContext) = context.Labels
@@ -19,12 +18,8 @@ module LabelsRepository =
             return result
         }
     
-    let addLabel (context : LabelsContext) (entity : Label) = 
-        context.Labels.Add(entity) |> ignore
-        context.SaveChanges true |> ignore
-    
     let updateLabel (context : LabelsContext) (entity : Label) = 
         let currentEntry = context.Labels.Find(entity.Id)
         context.Entry(currentEntry).CurrentValues.SetValues(entity)
-        if context.SaveChanges true > 1  then Some(currentEntry) else None
+        if context.SaveChanges true >= 1  then Some(currentEntry) else None
   
