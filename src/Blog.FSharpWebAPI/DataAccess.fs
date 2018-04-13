@@ -2,12 +2,8 @@
 open Blog.FSharpWebAPI.Models
 open Microsoft.EntityFrameworkCore
 
-type LabelsContext =
-    inherit DbContext
-    
-    new() = { inherit DbContext() }
-    new(options: DbContextOptions<LabelsContext>) = { inherit DbContext(options) }
-      
+type LabelsContext(options: DbContextOptions<LabelsContext>) =
+    inherit DbContext(options)
     
       override __.OnModelCreating modelBuilder = 
           let expr =  modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj) 
@@ -46,4 +42,8 @@ module LabelsRepository =
         let deleted = { current with Inactive = true }
         updateLabel context deleted id
 
-  
+let getAll  = LabelsRepository.getAll 
+let getLabel  = LabelsRepository.getLabel 
+let addLabelAsync = LabelsRepository.addLabelAsync 
+let updateLabel = LabelsRepository.updateLabel 
+let deleteLabel = LabelsRepository.deleteLabel 

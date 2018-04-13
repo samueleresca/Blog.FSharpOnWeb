@@ -10,6 +10,8 @@ open Microsoft.Extensions.DependencyInjection
 open Giraffe
 open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.Handlers
+open Blog.FSharpWebAPI.DataAccess
+open Microsoft.EntityFrameworkCore
 
 // ---------------------------------
 // Web app
@@ -62,8 +64,11 @@ let configureApp (app : IApplicationBuilder) =
         .UseGiraffe(webApp)
 
 let configureServices (services : IServiceCollection) =
+    services.AddDbContext<LabelsContext>(fun (options: DbContextOptionsBuilder) -> 
+                                                options.UseSqlServer("Data Source=(localdb)\Projects;Initial Catalog=ContentDataDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") |> ignore) |> ignore
     services.AddCors()    |> ignore
     services.AddGiraffe() |> ignore
+   
 
 let configureLogging (builder : ILoggingBuilder) =
     let filter (l : LogLevel) = l.Equals LogLevel.Error
