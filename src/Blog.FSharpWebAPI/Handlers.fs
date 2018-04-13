@@ -1,9 +1,8 @@
 module Blog.FSharpWebAPI.Handlers
-
-open Blog.FSharpWebAPI.Models
-open CompostionRoot
-open Giraffe
 open Microsoft.AspNetCore.Http
+open Giraffe
+open Blog.FSharpWebAPI.RequestModels
+open CompostionRoot
 
 let labelsHandler = fun (next : HttpFunc) (ctx : HttpContext) -> getAll |> ctx.WriteJsonAsync
 
