@@ -9,8 +9,7 @@ open Microsoft.EntityFrameworkCore
 let configureSqlServerContext = 
     (fun () ->
         let optionsBuilder = new DbContextOptionsBuilder<LabelsContext>();
-        optionsBuilder.UseSqlServer(@"Server=localhost;Database=ContentData;User Id=sa;
-                                      Password=P@55w0rd;") |> ignore
+        optionsBuilder.UseSqlServer(@"Data Source=(localdb)\Projects;Initial Catalog=ContentDataDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") |> ignore
         new LabelsContext(optionsBuilder.Options)
     )
 

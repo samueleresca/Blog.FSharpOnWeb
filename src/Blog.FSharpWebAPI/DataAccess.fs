@@ -1,8 +1,6 @@
 ﻿module Blog.FSharpWebAPI.DataAccess
 open Blog.FSharpWebAPI.Models
-open System
 open Microsoft.EntityFrameworkCore
-open Microsoft.EntityFrameworkCore.Storage.Converters
 
 
 type LabelsContext =
@@ -12,9 +10,10 @@ type LabelsContext =
     new(options: DbContextOptions<LabelsContext>) = { inherit DbContext(options) }
       
     
-    //override __.OnModelCreating modelBuilder = 
-//         modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj) |> ignore
-//         modelBuilder.Entity<Label>().Property(fun label -> (label.Code)).IsRequired() |> ignore
+      override __.OnModelCreating modelBuilder = 
+          let expr =  modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj) 
+          modelBuilder.Entity<Label>().Property(fun label -> label.Id).ValueGeneratedOnAdd() |> ignore
+
     
       
     [<DefaultValue>]

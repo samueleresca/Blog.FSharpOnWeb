@@ -13,9 +13,9 @@ module LabelsRepository =
             context.Labels.AddAsync(entity)
             |> Async.AwaitTask
             |> ignore
-            
+
             let! result = context.SaveChangesAsync true |> Async.AwaitTask
-            let result = if result > 1  then Some(entity) else None
+            let result = if result >= 1  then Some(entity) else None
             return result
         }
     

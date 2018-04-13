@@ -12,7 +12,7 @@ let labelHandler (id : int) =
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         getLabel id |> function 
         | Some l -> ctx.WriteJsonAsync l
-        | None -> (setStatusCode 400 >=> json "label not found") next ctx
+        | None -> (setStatusCode 404 >=> json "label not found") next ctx
 
 let labelAddHandler : HttpHandler = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
@@ -23,7 +23,7 @@ let labelAddHandler : HttpHandler =
                 |> Async.RunSynchronously
                 |> function 
                 | Some l -> Successful.CREATED l next ctx
-                | None -> (setStatusCode 400 >=> json "label not found") next ctx
+                | None -> (setStatusCode 400 >=> json "Label not added") next ctx
             return! result
         }
 
