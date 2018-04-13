@@ -4,6 +4,8 @@ open Blog.FSharpWebAPI.DataAccess
 open Blog.FSharpWebAPI.Models
 
 module LabelsRepository = 
+    open System.Diagnostics
+
     let getAll (context : LabelsContext) = context.Labels
     let getLabel (context : LabelsContext) id = context.Labels |> Seq.tryFind (fun f -> f.Id = id)
     
@@ -18,8 +20,15 @@ module LabelsRepository =
             return result
         }
     
-    let updateLabel (context : LabelsContext) (entity : Label) = 
-        let currentEntry = context.Labels.Find(entity.Id)
-        context.Entry(currentEntry).CurrentValues.SetValues(entity)
-        if context.SaveChanges true >= 1  then Some(currentEntry) else None
+    let updateLabel (context : LabelsContext) (entity : Label) (id : int) = 
+        let current = context.Labels.Find(id)
+        let updated = { entity with Id = id }
+        context.Entry(current).CurrentValues.SetValues(updated)
+        if context.SaveChanges true >= 1  then Some(updated) else None
+    
+    let deleteLabel (context : LabelsContext) (id : int) = 
+        let current = context.Labels.Find(id)
+        let deleted = { current with Inactive = true }
+        updateLabel context deleted id
+
   

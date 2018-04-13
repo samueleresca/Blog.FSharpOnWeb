@@ -19,3 +19,4 @@ let getAll  = LabelsRepository.getAll getContext
 let getLabel  = LabelsRepository.getLabel getContext
 let addLabelAsync = LabelsRepository.addLabelAsync getContext
 let updateLabel = LabelsRepository.updateLabel getContext
+let deleteLabel = LabelsRepository.deleteLabel getContext
