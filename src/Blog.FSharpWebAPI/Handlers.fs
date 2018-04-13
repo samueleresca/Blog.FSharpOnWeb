@@ -16,25 +16,25 @@ let labelHandler (id : int) =
 let labelAddHandler : HttpHandler = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         task { 
-            let! label = ctx.BindJsonAsync<Label>()
-            let result = 
-                addLabelAsync label
-                |> Async.RunSynchronously
-                |> function 
-                | Some l -> Successful.CREATED l next ctx
-                | None -> (setStatusCode 400 >=> json "Label not added") next ctx
-            return! result
+            let! label = ctx.BindJsonAsync<CreateUpdateLabelRequest>()
+            match label.HasErrors with
+                | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
+                | None -> return! addLabelAsync label.GetLabel
+                                |> Async.RunSynchronously
+                                |> function 
+                                | Some l -> Successful.CREATED l next ctx
+                                | None -> (setStatusCode 400 >=> json "Label not added") next ctx
         }
 
 let labelUpdateHandler (id: int) = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         task { 
-            let! label = ctx.BindJsonAsync<Label>()
-            let result = 
-                updateLabel label id |> function 
-                | Some l -> ctx.WriteJsonAsync l
-                | None -> (setStatusCode 400 >=> json "Label not updated") next ctx
-            return! result
+            let! label = ctx.BindJsonAsync<CreateUpdateLabelRequest>()
+            match label.HasErrors with
+                | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
+                | None ->  return! updateLabel label.GetLabel id |> function 
+                                | Some l -> ctx.WriteJsonAsync l
+                                | None -> (setStatusCode 400 >=> json "Label not updated") next ctx
         }
 
 let labelDeleteHandler (id: int) = 
