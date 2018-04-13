@@ -37,7 +37,7 @@ let labelUpdateHandler (id: int) =
                                 | None -> (setStatusCode 400 >=> json "Label not updated") next ctx
         }
 
-let labelDeleteHandler (id: int) = 
+let labelDeleteHandler (id: int) =
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         deleteLabel id |> function 
         | Some l -> ctx.WriteJsonAsync l
