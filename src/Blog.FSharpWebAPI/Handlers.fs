@@ -1,13 +1,14 @@
 module Blog.FSharpWebAPI.Handlers
-open Microsoft.AspNetCore.Http
-open Giraffe
-open Blog.FSharpWebAPI.RequestModels
-open Blog.FSharpWebAPI.DataAccess
 
-let labelsHandler = fun (next : HttpFunc) (ctx : HttpContext) ->
-                        let context = ctx.RequestServices.GetService(typeof<LabelsContext>) :?> LabelsContext
-                        getAll context 
-                        |> ctx.WriteJsonAsync
+open Blog.FSharpWebAPI.DataAccess
+open Blog.FSharpWebAPI.RequestModels
+open Giraffe
+open Microsoft.AspNetCore.Http
+
+let labelsHandler = 
+    fun (next : HttpFunc) (ctx : HttpContext) -> 
+        let context = ctx.RequestServices.GetService(typeof<LabelsContext>) :?> LabelsContext
+        getAll context |> ctx.WriteJsonAsync
 
 let labelHandler (id : int) = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
@@ -22,28 +23,30 @@ let labelAddHandler : HttpHandler =
             let context = ctx.RequestServices.GetService(typeof<LabelsContext>) :?> LabelsContext
             let! label = ctx.BindJsonAsync<CreateUpdateLabelRequest>()
             match label.HasErrors with
-                | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
-                | None -> return! addLabelAsync context label.GetLabel
-                                |> Async.RunSynchronously
-                                |> function 
-                                | Some l -> Successful.CREATED l next ctx
-                                | None -> (setStatusCode 400 >=> json "Label not added") next ctx
+            | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
+            | None -> 
+                return! addLabelAsync context label.GetLabel
+                        |> Async.RunSynchronously
+                        |> function 
+                        | Some l -> Successful.CREATED l next ctx
+                        | None -> (setStatusCode 400 >=> json "Label not added") next ctx
         }
 
-let labelUpdateHandler (id: int) = 
+let labelUpdateHandler (id : int) = 
     fun (next : HttpFunc) (ctx : HttpContext) -> 
         task { 
             let context = ctx.RequestServices.GetService(typeof<LabelsContext>) :?> LabelsContext
             let! label = ctx.BindJsonAsync<CreateUpdateLabelRequest>()
             match label.HasErrors with
-                | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
-                | None ->  return! updateLabel context label.GetLabel id |> function 
-                                | Some l -> ctx.WriteJsonAsync l
-                                | None -> (setStatusCode 400 >=> json "Label not updated") next ctx
+            | Some msg -> return! (setStatusCode 400 >=> json msg) next ctx
+            | None -> 
+                return! updateLabel context label.GetLabel id |> function 
+                        | Some l -> ctx.WriteJsonAsync l
+                        | None -> (setStatusCode 400 >=> json "Label not updated") next ctx
         }
 
-let labelDeleteHandler (id: int) =
-    fun (next : HttpFunc) (ctx : HttpContext) ->
+let labelDeleteHandler (id : int) = 
+    fun (next : HttpFunc) (ctx : HttpContext) -> 
         let context = ctx.RequestServices.GetService(typeof<LabelsContext>) :?> LabelsContext
         deleteLabel context id |> function 
         | Some l -> ctx.WriteJsonAsync l
