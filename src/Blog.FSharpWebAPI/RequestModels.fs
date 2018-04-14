@@ -22,10 +22,3 @@ type CreateUpdateLabelRequest =
                                 Content = this.Content;
                                 Inactive= this.Inactive
                            }
-
-
-type Message =
-    {
-        Text: string
-    }
-
