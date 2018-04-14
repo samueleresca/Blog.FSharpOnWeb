@@ -246,3 +246,4 @@ obj/
 bin/
 .idea/
 .vs/
+.DS_Store
