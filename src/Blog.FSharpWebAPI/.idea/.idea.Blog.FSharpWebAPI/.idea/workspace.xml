@@ -302,7 +302,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39986000" />
+    <option name="totallyTimeSpent" value="40603000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -323,9 +323,9 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32943925" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" weight="0.32943925" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49933246" visible="true" weight="0.32943925" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49933246" visible="true" weight="0.32943925" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.32943925" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2596796" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2596796" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32943925" />
       <window_info anchor="right" id="Database" order="3" />
