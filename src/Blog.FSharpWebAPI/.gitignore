@@ -244,3 +244,5 @@ msbuild.binlog
 
 obj/
 bin/
+.idea/
+.vs/
