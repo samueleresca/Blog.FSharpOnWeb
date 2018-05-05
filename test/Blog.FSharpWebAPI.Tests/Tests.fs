@@ -42,7 +42,7 @@ let createRequest (method : HttpMethod) (path : string) =
     let url = "http://127.0.0.1" + path
     new HttpRequestMessage(method, url)
 
-let addCookiesFromResponse (respogit snse : HttpResponseMessage)
+let addCookiesFromResponse (response : HttpResponseMessage)
                            (request  : HttpRequestMessage) =
     request.Headers.Add("Cookie", response.Headers.GetValues("Set-Cookie"))
     request
