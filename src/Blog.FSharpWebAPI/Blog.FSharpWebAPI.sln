@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Blog.FSharpWebAPI", "Blog.FSharpWebAPI.fsproj", "{9A028317-7054-41CF-AF24-A38F4A80F88D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92FA1270-0EEF-421F-B654-6999FA0AAC15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{75F2FE02-C60F-4C2C-86AE-814FCC41E87C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Blog.FSharpWebAPI.Tests", "..\..\test\Blog.FSharpWebAPI.Tests\Blog.FSharpWebAPI.Tests.fsproj", "{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +21,19 @@ Global
 		{9A028317-7054-41CF-AF24-A38F4A80F88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A028317-7054-41CF-AF24-A38F4A80F88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A028317-7054-41CF-AF24-A38F4A80F88D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8C8D13A-3CCA-4F75-A02A-0F6765912AC0}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A028317-7054-41CF-AF24-A38F4A80F88D} = {92FA1270-0EEF-421F-B654-6999FA0AAC15}
+		{37AFBC0C-04A7-4982-9A2B-7A9F60818CE0} = {75F2FE02-C60F-4C2C-86AE-814FCC41E87C}
 	EndGlobalSection
 EndGlobal
