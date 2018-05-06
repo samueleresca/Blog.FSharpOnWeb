@@ -11,6 +11,7 @@ type Label =
         IsoCode: string
         Content: string
         Inactive: bool
+
     }
 
 type Message =
