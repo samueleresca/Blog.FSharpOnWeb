@@ -1,7 +1,8 @@
-module SampleApp.Tests
+module DataAccess.Tests
 
 open Blog.FSharpWebAPI
 open Blog.FSharpWebAPI.Models
+open Fixtures
 open System
 open System.Net
 open System.Net.Http
@@ -15,75 +16,17 @@ open Xunit
 open DataAccess
 open Microsoft.EntityFrameworkCore
 
-
-// ---------------------------------
-// Test server/client setup
-// ---------------------------------
-
-let createHost() =
-    WebHostBuilder()
-        .UseContentRoot(Directory.GetCurrentDirectory())
-        .Configure(Action<IApplicationBuilder> Blog.FSharpWebAPI.App.configureApp)
-        .ConfigureServices(Action<IServiceCollection> Blog.FSharpWebAPI.App.configureServices)
-
 let createInMemoryContext (databaseName : string) =
     let builder = new DbContextOptionsBuilder<LabelsContext>()
     builder.UseInMemoryDatabase(databaseName).Options;
     
-    
-// ---------------------------------
-// Helper functions
-// ---------------------------------
-
-let runTask task =
-    task
-    |> Async.AwaitTask
-    |> Async.RunSynchronously
-
-let get (client : HttpClient) (path : string) =
-    path
-    |> client.GetAsync
-    |> runTask
-
-let createRequest (method : HttpMethod) (path : string) =
-    let url = "http://127.0.0.1" + path
-    new HttpRequestMessage(method, url)
-
-let makeRequest (client : HttpClient) (request : HttpRequestMessage) =
-    use server = new TestServer(createHost())
-    use client = server.CreateClient()
-    request
-    |> client.SendAsync
-    |> runTask
-
-let ensureSuccess (response : HttpResponseMessage) =
-    if not response.IsSuccessStatusCode
-    then response.Content.ReadAsStringAsync() |> runTask |> failwithf "%A"
-    else response
-
-let isStatus (code : HttpStatusCode) (response : HttpResponseMessage) =
-    Assert.Equal(code, response.StatusCode)
-    response
-
-let isOfType (contentType : string) (response : HttpResponseMessage) =
-    Assert.Equal(contentType, response.Content.Headers.ContentType.MediaType)
-    response
-
-let readText (response : HttpResponseMessage) =
-    response.Content.ReadAsStringAsync()
-    |> runTask
-
-let shouldEqual expected actual = Assert.Equal(expected, actual)
-let shouldNotNull expected = Assert.NotNull(expected)
 let getTestLabel = { Id = 1 ; Code = "Test"; Content = "Test content"; IsoCode = "IT"; Inactive = false}
-// ---------------------------------
-// Tests
-// ---------------------------------
+
 
 [<Fact>]
 let ``getAll should not return empty result`` () =
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "myDatabase")
+    let context = new LabelsContext(createInMemoryContext "getAll_db")
     //Act
     getAll context
     //Assert
@@ -93,7 +36,7 @@ let ``getAll should not return empty result`` () =
 [<Fact>]
 let ``getAll should return correct result`` () =
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "myDatabase")
+    let context = new LabelsContext(createInMemoryContext "getAll_db")
     
     getTestLabel 
     |> context.Labels.Add
@@ -107,4 +50,26 @@ let ``getAll should return correct result`` () =
     |> List.length 
     |> string
     |> shouldEqual "1"
+
+
+[<Fact>]
+let ``getLabel should return correct result `` () =
+    //Arrange
+    let context = new LabelsContext(createInMemoryContext "getLabel_db")
+    
+    getTestLabel 
+    |> context.Labels.Add
+    |> ignore
+    
+    context.SaveChanges() |> ignore
+    //Act
+    let result =getLabel context 1
+    //Assert
+    //result.IsSome
+    //|> shouldEqual true
+    
+    result.Value.Id
+    |> string
+    |> shouldEqual "1"
+    
 
