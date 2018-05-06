@@ -65,11 +65,32 @@ let ``getLabel should return correct result `` () =
     //Act
     let result =getLabel context 1
     //Assert
-    //result.IsSome
-    //|> shouldEqual true
+    Assert.Equal(result.Value.Id, 1)
     
-    result.Value.Id
-    |> string
-    |> shouldEqual "1"
-    
+[<Fact>]
+let ``addLabelAsync should return inserted result `` () =
+    async{
+        //Arrange
+        let context = new LabelsContext(createInMemoryContext "addLabelAsync_db")
+        //Act
+        let! result = addLabelAsync context getTestLabel
+        //Assert
+        result |> shouldNotNull
+    }
 
+
+[<Fact>]
+let ``updateLabel should update correct record `` () =
+       //Arrange
+       let context = new LabelsContext(createInMemoryContext "updateLabel_db")
+       
+       getTestLabel 
+       |> context.Labels.Add
+       |> ignore
+       
+       context.SaveChanges() |> ignore
+       //Act
+       let result = updateLabel context { Id = 1 ; Code = "Test"; Content = "Test content updated"; IsoCode = "IT"; Inactive = false} 1
+       //Assert
+       result.Value.Content
+       |> shouldEqual "Test content updated"
