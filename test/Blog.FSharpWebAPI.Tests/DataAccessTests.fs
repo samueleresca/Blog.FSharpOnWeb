@@ -1,23 +1,16 @@
 module DataAccess.Tests
 
+open Microsoft.EntityFrameworkCore
+open Xunit
 open Blog.FSharpWebAPI
 open Blog.FSharpWebAPI.Models
 open DataAccess
 open Fixtures
-open Microsoft.AspNetCore.Builder
-open Microsoft.AspNetCore.Hosting
-open Microsoft.AspNetCore.TestHost
-open Microsoft.EntityFrameworkCore
-open Microsoft.Extensions.DependencyInjection
-open System
-open System.IO
-open System.Net
-open System.Net.Http
-open Xunit
+
 
 let createInMemoryContext (databaseName : string) = 
     let builder = new DbContextOptionsBuilder<LabelsContext>()
-    builder.UseInMemoryDatabase(databaseName).Options
+    new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
 
 let getTestLabel = 
     { Id = 1
@@ -29,7 +22,7 @@ let getTestLabel =
 [<Fact>]
 let ``getAll should not return empty result``() = 
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "getAll_db")
+    let context = createInMemoryContext "getAll_db"
     //Act
     getAll context //Assert
                    |> shouldNotNull
@@ -37,7 +30,7 @@ let ``getAll should not return empty result``() =
 [<Fact>]
 let ``getAll should return correct result``() = 
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "getAll_db")
+    let context = createInMemoryContext "getAll_db"
     getTestLabel
     |> context.Labels.Add
     |> ignore
@@ -53,7 +46,7 @@ let ``getAll should return correct result``() =
 [<Fact>]
 let ``getLabel should return correct result ``() = 
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "getLabel_db")
+    let context = createInMemoryContext "getLabel_db"
     getTestLabel
     |> context.Labels.Add
     |> ignore
@@ -67,7 +60,7 @@ let ``getLabel should return correct result ``() =
 let ``addLabelAsync should return inserted result ``() = 
     async { 
         //Arrange
-        let context = new LabelsContext(createInMemoryContext "addLabelAsync_db")
+        let context = createInMemoryContext "addLabelAsync_db"
         //Act
         let! result = addLabelAsync context getTestLabel
         //Assert
@@ -77,7 +70,7 @@ let ``addLabelAsync should return inserted result ``() =
 [<Fact>]
 let ``updateLabel should update correct record ``() = 
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "updateLabel_db")
+    let context = createInMemoryContext "updateLabel_db"
     getTestLabel
     |> context.Labels.Add
     |> ignore
@@ -95,7 +88,7 @@ let ``updateLabel should update correct record ``() =
 [<Fact>]
 let ``deleteLabel should delete correct record ``() = 
     //Arrange
-    let context = new LabelsContext(createInMemoryContext "deleteLabel_db")
+    let context = createInMemoryContext "deleteLabel_db"
     getTestLabel
     |> context.Labels.Add
     |> ignore
