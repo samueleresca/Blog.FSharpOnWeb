@@ -94,3 +94,19 @@ let ``updateLabel should update correct record `` () =
        //Assert
        result.Value.Content
        |> shouldEqual "Test content updated"
+       
+[<Fact>]
+let ``deleteLabel should delete correct record `` () =
+       //Arrange
+       let context = new LabelsContext(createInMemoryContext "deleteLabel_db")
+       
+       getTestLabel 
+       |> context.Labels.Add
+       |> ignore
+       
+       context.SaveChanges() |> ignore
+       //Act
+       let result = deleteLabel context 1
+       //Assert
+       Assert.Equal(result.Value.Id, 1)
+       
