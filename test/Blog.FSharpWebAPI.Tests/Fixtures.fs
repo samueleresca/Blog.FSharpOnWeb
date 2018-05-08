@@ -17,7 +17,10 @@ open Xunit
 let createHost() = 
     WebHostBuilder().UseContentRoot(Directory.GetCurrentDirectory())
         .Configure(Action<IApplicationBuilder> Blog.FSharpWebAPI.App.configureApp)
-        .ConfigureServices(Action<IServiceCollection> Blog.FSharpWebAPI.App.configureServices)
+        .ConfigureServices(Action<IServiceCollection> Blog.FSharpWebAPI.App.configureServices )
+        
+        
+        
 
 let runTask task = 
     task

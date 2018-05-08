@@ -28,7 +28,7 @@ let labelAddHandler : HttpHandler =
                 return! addLabelAsync context label.GetLabel
                         |> Async.RunSynchronously
                         |> function 
-                        | Some l -> Successful.CREATED l next ctx
+                        | Some l -> (setStatusCode 200 >=> json l) next ctx
                         | None -> (setStatusCode 400 >=> json "Label not added") next ctx
         }
 
