@@ -16,6 +16,7 @@
     <Compile Include="Fixtures.fs" />
     <Compile Include="DataAccessTests.fs" />
     <Compile Include="HandlersTests.fs" />
+    <Compile Include="ClientTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,12 +25,6 @@ let createInMemoryContext (databaseName : string) =
     let builder = new DbContextOptionsBuilder<LabelsContext>()
     new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
 
-let getTestLabel = 
-    { Id = 1
-      Code = "Test"
-      Content = "Test content"
-      IsoCode = "IT"
-      Inactive = false }
       
 let next : HttpFunc = Some >> Task.FromResult
 
@@ -45,14 +39,21 @@ let assertFailf format args =
     
 let getContentType (response : HttpResponse) =
     response.Headers.["Content-Type"].[0]
+    
+let configureContext (dbContext : LabelsContext) = 
+        let context = Substitute.For<HttpContext>();
+        context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
+        context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
+        context.Response.Body <- new MemoryStream()
+        context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
+
+        
+        context
 
 [<Fact>]
 let ``/label should returns the correct response`` () =
-    let context = Substitute.For<HttpContext>();
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(createInMemoryContext "test") |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
+    use dbContext = createInMemoryContext "getAll";
+    let context = configureContext dbContext;
     
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label")) |> ignore
@@ -73,26 +74,21 @@ let ``/label should returns the correct response`` () =
 
 [<Fact>]
 let ``/label/id should returns the correct response with correct id`` () =
-    let context = Substitute.For<HttpContext>();
-    let dbContext= createInMemoryContext "getById";
+    use dbContext = createInMemoryContext "getById";
      
     getTestLabel
           |> dbContext.Labels.Add
           |> ignore
     dbContext.SaveChanges() |> ignore
-          
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
     
+    let context = configureContext dbContext;
+          
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
                    
   
     task {
           let! result = App.webApp next context
-          
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
@@ -104,13 +100,8 @@ let ``/label/id should returns the correct response with correct id`` () =
     
 [<Fact>]
 let ``/label/id should returns not found when id does not exists`` () =
-    let context = Substitute.For<HttpContext>();
-    let dbContext= createInMemoryContext "getById";
-     
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
+    use dbContext= createInMemoryContext "getById";
+    let context = configureContext dbContext;
     
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/999")) |> ignore
@@ -119,30 +110,27 @@ let ``/label/id should returns not found when id does not exists`` () =
     task {
           let! result = App.webApp next context
           match result with
+                  | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
                       Assert.Contains("Label not found", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
+ 
           
         }  
         
 [<Fact>]
 let ``/label/ POST should add a new label`` () =
-    let context = Substitute.For<HttpContext>();
-    let dbContext= createInMemoryContext "add";
-    
-    let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject({   
-                                                                                                                         Code = "Test"
-                                                                                                                         IsoCode = "IT"
-                                                                                                                         Content = "Test content"
-                                                                                                                         Inactive = false
-                                                                                                                     }))
-
-     
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
+    use dbContext = createInMemoryContext "add";
+    let label = {   
+                    Code = "Test"
+                    IsoCode = "IT"
+                    Content = "Test content"
+                    Inactive = false
+                }
+                
+    let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(label))
+    let context = configureContext dbContext
     
     context.Request.Method.ReturnsForAnyArgs "POST" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label")) |> ignore
@@ -152,6 +140,7 @@ let ``/label/ POST should add a new label`` () =
     task {
           let! result = App.webApp next context
           match result with
+                  | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
                       Assert.Contains("\"code\":\"Test\"", body)
@@ -162,26 +151,21 @@ let ``/label/ POST should add a new label`` () =
         
 [<Fact>]
 let ``/label/id PUT should modify a label`` () =
-    let context = Substitute.For<HttpContext>();
-    let dbContext= createInMemoryContext "update";
-    
+    use dbContext= createInMemoryContext "update";
     getTestLabel
       |> dbContext.Labels.Add
       |> ignore
     dbContext.SaveChanges() |> ignore
     
-    let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject({   
-                                                                                                                                                                                               Code = "CodeTest"
-                                                                                                                                                                                               IsoCode = "IT"
-                                                                                                                                                                                               Content = "Test content"
-                                                                                                                                                                                               Inactive = false
-                                                                                                                                                                                           }))
-
-     
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
+    let label = {   
+                        Code = "TestUpdated"
+                        IsoCode = "IT"
+                        Content = "Test content"
+                        Inactive = false
+                    }
+                    
+    let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(label))
+    let context = configureContext dbContext
     
     context.Request.Method.ReturnsForAnyArgs "PUT" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -191,39 +175,36 @@ let ``/label/id PUT should modify a label`` () =
     task {
           let! result = App.webApp next context
           match result with
+                  | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
-                      Assert.Contains("\"code\":\"CodeTest\"", body)
+                      Assert.Contains("\"code\":\"TestUpdated\"", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
           
         }          
 
 [<Fact>]
 let ``/label/ DELETE should delete the label label correctly`` () =
-    let context = Substitute.For<HttpContext>();
-    let dbContext= createInMemoryContext "delete";
-    
+    use dbContext= createInMemoryContext "delete";
+   
     getTestLabel
       |> dbContext.Labels.Add
       |> ignore
+      
     dbContext.SaveChanges() |> ignore
     
+    let context = configureContext dbContext
      
-    context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
-    context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
-    context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-    context.Response.Body <- new MemoryStream()
-    
     context.Request.Method.ReturnsForAnyArgs "DELETE" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
 
   
     task {
-          let! result = App.webApp next context
+          let! result =  App.webApp next context
           match result with
                   | Some ctx ->
                       let body = getBody ctx
                       Assert.Contains("\"code\":\"Test\"", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
           
-        }       
+        }   

@@ -50,11 +50,15 @@ let configureApp (app : IApplicationBuilder) =
      | false -> app.UseGiraffeErrorHandler errorHandler).UseCors(configureCors).UseStaticFiles().UseGiraffe(webApp)
 
 let configureServices (services : IServiceCollection) = 
+    let env = services.BuildServiceProvider().GetService<IHostingEnvironment>();
+                
+    
     services.AddDbContext<LabelsContext>
         (fun (options : DbContextOptionsBuilder) -> 
-        options.UseSqlServer
-            (@"Server=localhost;Database=ContentDataDB2;User Id=sa;Password=P@55w0rd;") 
-        |> ignore) |> ignore
+        match env.IsEnvironment("Test") with
+        | true -> options.UseInMemoryDatabase("client_tests_"+Guid.NewGuid().ToString()) |> ignore
+        | false -> options.UseSqlServer(@"Server=localhost;Database=ContentDataDB2;User Id=sa;Password=P@55w0rd;") |> ignore)
+    |> ignore
     services.AddCors() |> ignore
     services.AddGiraffe() |> ignore
 

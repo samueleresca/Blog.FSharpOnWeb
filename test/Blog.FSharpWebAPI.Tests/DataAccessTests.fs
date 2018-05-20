@@ -12,13 +12,6 @@ let createInMemoryContext (databaseName : string) =
     let builder = new DbContextOptionsBuilder<LabelsContext>()
     new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
 
-let getTestLabel = 
-    { Id = 1
-      Code = "Test"
-      Content = "Test content"
-      IsoCode = "IT"
-      Inactive = false }
-
 [<Fact>]
 let ``getAll should not return empty result``() = 
     //Arrange
