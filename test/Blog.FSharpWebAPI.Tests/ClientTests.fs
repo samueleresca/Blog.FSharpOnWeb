@@ -38,11 +38,10 @@ let ``/label/ POST should add a new label`` () =
 let ``/label/id PUT should modify a label`` () =
     use server = new TestServer(createHost())
     use client = server.CreateClient()
-    let content = new StringContent(JsonConvert.SerializeObject(getTestLabel), Encoding.UTF8, "application/json");
-    post client "label" content |> ignore
+    let content = new StringContent(JsonConvert.SerializeObject(getTestLabel), Encoding.UTF8, "application/json")
     
-    let insertedLalbel = get client "label" |> ensureSuccess |> readText
-    Console.WriteLine(insertedLalbel)
+    post client "label" content |> ignore
+ 
     let label = {   
                    Code = "TestUpdated"
                    IsoCode = "IT"

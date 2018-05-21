@@ -19,7 +19,8 @@ open Blog.FSharpWebAPI.Models
 
 let initializeInMemoryContext (databaseName : string) = 
     let builder = new DbContextOptionsBuilder<LabelsContext>()
-    new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
+    let context = new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
+    context
 
 let populateContext (context : LabelsContext) (label : Label) = 
       label
@@ -146,6 +147,24 @@ let ``/label/ POST should add a new label`` () =
           
         }  
         
+[<Fact>]
+let ``/label/ DELETE should delete the label label correctly`` () =
+     initializeAndPopulateContext "delete" getTestLabel
+     let context = initializeInMemoryContext "delete" |> configureContext
+      
+     context.Request.Method.ReturnsForAnyArgs "DELETE" |> ignore
+     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
+   
+     task {
+           let! result =  App.webApp next context
+           match result with
+                   | None -> assertFailf "Result was expected to be %s" "[]"
+                   | Some ctx ->
+                       let body = getBody ctx
+                       Assert.Contains("\"code\":\"Test\"", body)
+                       Assert.Equal("application/json", ctx.Response |> getContentType)
+           
+         }   
         
 [<Fact>]
 let ``/label/id PUT should modify a label`` () =
@@ -175,24 +194,4 @@ let ``/label/id PUT should modify a label`` () =
                       Assert.Contains("\"code\":\"TestUpdated\"", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
           
-        }          
-
-[<Fact>]
-let ``/label/ DELETE should delete the label label correctly`` () =
-    initializeAndPopulateContext "delete" getTestLabel
-    let context = initializeInMemoryContext "delete" |> configureContext
-     
-    context.Request.Method.ReturnsForAnyArgs "DELETE" |> ignore
-    context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
-
-  
-    task {
-          let! result =  App.webApp next context
-          match result with
-                  | None -> assertFailf "Result was expected to be %s" "[]"
-                  | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("\"code\":\"Test\"", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
-          
-        }   
+        }  
