@@ -72,7 +72,7 @@ let ``/label should returns the correct response`` () =
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
-                      Assert.Equal("[]", body)
+                      Assert.Contains("\"code\":\"Test\"", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
           
         }
@@ -119,10 +119,9 @@ let ``/label/id should returns not found when id does not exists`` () =
         
 [<Fact>]
 let ``/label/ POST should add a new label`` () =
-    initializeAndPopulateContext "add" getTestLabel;
 
     let label = {   
-                    Code = "Test"
+                    Code = "TestAdded"
                     IsoCode = "IT"
                     Content = "Test content"
                     Inactive = false
@@ -142,7 +141,7 @@ let ``/label/ POST should add a new label`` () =
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
-                      Assert.Contains("\"code\":\"Test\"", body)
+                      Assert.Contains("\"code\":\"TestAdded\"", body)
                       Assert.Equal("application/json", ctx.Response |> getContentType)
           
         }  
