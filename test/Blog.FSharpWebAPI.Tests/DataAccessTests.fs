@@ -1,4 +1,4 @@
-module DataAccess.Tests
+module DataAccessTests
 
 open Microsoft.EntityFrameworkCore
 open Xunit

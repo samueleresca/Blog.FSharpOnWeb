@@ -1,14 +1,9 @@
-module Client.Tests
+module ClientTests
 
 open System
-open System.Net
 open System.Net.Http
 open System.Text
-open System.IO
-open Microsoft.AspNetCore.Builder
-open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.TestHost
-open Microsoft.Extensions.DependencyInjection
 open Xunit
 open Newtonsoft.Json
 open Fixtures

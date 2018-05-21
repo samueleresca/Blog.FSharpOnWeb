@@ -1,31 +1,34 @@
-module Handlers.Tests
+module HandlersTests
 
 open Microsoft.EntityFrameworkCore
 open Xunit
 open Blog.FSharpWebAPI
-open Blog.FSharpWebAPI
-open Blog.FSharpWebAPI.Models
 open Blog.FSharpWebAPI.RequestModels
 open DataAccess
-open Handlers
 open Fixtures
 open Giraffe
 open Giraffe.Serialization.Json
-open Microsoft.AspNetCore.Hosting
-open Microsoft.AspNetCore.TestHost
 open Microsoft.AspNetCore.Http
 open NSubstitute
 open Newtonsoft.Json
 open System.Threading.Tasks
 open System.IO
 open System.Text
+open Blog.FSharpWebAPI.Models
 
 
-let createInMemoryContext (databaseName : string) = 
+let initializeInMemoryContext (databaseName : string) = 
     let builder = new DbContextOptionsBuilder<LabelsContext>()
     new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
 
-      
+let populateContext (context : LabelsContext) (label : Label) = 
+      label
+          |> context.Labels.Add
+          |> ignore
+      context.SaveChanges() |> ignore
+
+let initializeAndPopulateContext (databaseName:string) (label: Label) =  initializeInMemoryContext databaseName |> populateContext <| label
+
 let next : HttpFunc = Some >> Task.FromResult
 
 let getBody (ctx : HttpContext) =
@@ -50,10 +53,13 @@ let configureContext (dbContext : LabelsContext) =
         
         context
 
+
 [<Fact>]
 let ``/label should returns the correct response`` () =
-    use dbContext = createInMemoryContext "getAll";
-    let context = configureContext dbContext;
+    initializeAndPopulateContext "getAll" getTestLabel;
+
+    let context =  initializeInMemoryContext "getAll"
+                    |> configureContext;
     
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label")) |> ignore
@@ -74,14 +80,8 @@ let ``/label should returns the correct response`` () =
 
 [<Fact>]
 let ``/label/id should returns the correct response with correct id`` () =
-    use dbContext = createInMemoryContext "getById";
-     
-    getTestLabel
-          |> dbContext.Labels.Add
-          |> ignore
-    dbContext.SaveChanges() |> ignore
-    
-    let context = configureContext dbContext;
+    initializeAndPopulateContext "getById" getTestLabel;
+    let context = initializeInMemoryContext "getById" |> configureContext;
           
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -100,12 +100,10 @@ let ``/label/id should returns the correct response with correct id`` () =
     
 [<Fact>]
 let ``/label/id should returns not found when id does not exists`` () =
-    use dbContext= createInMemoryContext "getById";
-    let context = configureContext dbContext;
+    let context =  initializeInMemoryContext "getById" |> configureContext;
     
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/999")) |> ignore
-                   
   
     task {
           let! result = App.webApp next context
@@ -121,7 +119,8 @@ let ``/label/id should returns not found when id does not exists`` () =
         
 [<Fact>]
 let ``/label/ POST should add a new label`` () =
-    use dbContext = createInMemoryContext "add";
+    initializeAndPopulateContext "add" getTestLabel;
+
     let label = {   
                     Code = "Test"
                     IsoCode = "IT"
@@ -130,7 +129,7 @@ let ``/label/ POST should add a new label`` () =
                 }
                 
     let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(label))
-    let context = configureContext dbContext
+    let context = initializeInMemoryContext "add" |> configureContext
     
     context.Request.Method.ReturnsForAnyArgs "POST" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label")) |> ignore
@@ -151,11 +150,7 @@ let ``/label/ POST should add a new label`` () =
         
 [<Fact>]
 let ``/label/id PUT should modify a label`` () =
-    use dbContext= createInMemoryContext "update";
-    getTestLabel
-      |> dbContext.Labels.Add
-      |> ignore
-    dbContext.SaveChanges() |> ignore
+    initializeAndPopulateContext "update" getTestLabel;
     
     let label = {   
                         Code = "TestUpdated"
@@ -165,7 +160,7 @@ let ``/label/id PUT should modify a label`` () =
                     }
                     
     let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(label))
-    let context = configureContext dbContext
+    let context = initializeInMemoryContext "update" |> configureContext
     
     context.Request.Method.ReturnsForAnyArgs "PUT" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -185,15 +180,8 @@ let ``/label/id PUT should modify a label`` () =
 
 [<Fact>]
 let ``/label/ DELETE should delete the label label correctly`` () =
-    use dbContext= createInMemoryContext "delete";
-   
-    getTestLabel
-      |> dbContext.Labels.Add
-      |> ignore
-      
-    dbContext.SaveChanges() |> ignore
-    
-    let context = configureContext dbContext
+    initializeAndPopulateContext "delete" getTestLabel
+    let context = initializeInMemoryContext "delete" |> configureContext
      
     context.Request.Method.ReturnsForAnyArgs "DELETE" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -202,6 +190,7 @@ let ``/label/ DELETE should delete the label label correctly`` () =
     task {
           let! result =  App.webApp next context
           match result with
+                  | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
                       let body = getBody ctx
                       Assert.Contains("\"code\":\"Test\"", body)
