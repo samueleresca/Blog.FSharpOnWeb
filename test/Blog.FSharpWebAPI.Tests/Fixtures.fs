@@ -24,7 +24,7 @@ let createHost() =
 
 
 let getTestLabel = 
-    { Id = 1
+    { Id = 0
       Code = "Test"
       Content = "Test content"
       IsoCode = "IT"
