@@ -38,7 +38,7 @@ let isStatus (code : HttpStatusCode) (response : HttpResponseMessage) =
     Assert.Equal(code, response.StatusCode)
     response
 
-let isOfType (contentType : string) (response : HttpResponseMessage) = 
+let isOfType (response : HttpResponseMessage) (contentType : string)  = 
     Assert.Equal(contentType, response.Content.Headers.ContentType.MediaType)
     response
 

@@ -12,9 +12,6 @@ open Newtonsoft.Json
 open Blog.FSharpWebAPI.DataAccess
 open System.IO
 open System.Text
-
-
-
     
 let assertFailf format args =
     let msg = sprintf format args
@@ -29,16 +26,12 @@ let configureContext (dbContext : LabelsContext) =
         context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
         context.Response.Body <- new MemoryStream()
         context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
-
-        
         context
-
 
 [<Fact>]
 let ``/label should returns the correct response`` () =
-    initializeAndPopulateContext "getAll" getTestLabel;
 
-    let context =  initializeInMemoryContext "getAll"
+    let context =  initializeAndPopulateContext "getAll" getTestLabel
                     |> configureContext;
     
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
@@ -51,17 +44,18 @@ let ``/label should returns the correct response`` () =
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("\"code\":\"Test\"", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
+                       getBody ctx
+                               |> shouldContains "\"code\":\"Test\""
+                     
           
         }
     
 
 [<Fact>]
 let ``/label/id should returns the correct response with correct id`` () =
-    initializeAndPopulateContext "getById" getTestLabel;
-    let context = initializeInMemoryContext "getById" |> configureContext;
+   
+    let context = initializeAndPopulateContext "getById" getTestLabel
+                    |> configureContext;
           
     context.Request.Method.ReturnsForAnyArgs "GET" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -72,10 +66,8 @@ let ``/label/id should returns the correct response with correct id`` () =
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("\"id\":1", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
-          
+                             getBody ctx
+                                  |> shouldContains "\"id\":1"
         }
     
 [<Fact>]
@@ -90,10 +82,8 @@ let ``/label/id should returns not found when id does not exists`` () =
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("Label not found", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
- 
+                         getBody ctx
+                                  |> shouldContains "Label not found"
           
         }  
         
@@ -120,16 +110,15 @@ let ``/label/ POST should add a new label`` () =
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("\"code\":\"TestAdded\"", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
+                      getBody ctx
+                            |> shouldContains "\"code\":\"TestAdded\""
           
         }  
         
 [<Fact>]
 let ``/label/ DELETE should delete the label label correctly`` () =
-     initializeAndPopulateContext "delete" getTestLabel
-     let context = initializeInMemoryContext "delete" |> configureContext
+     let context = initializeAndPopulateContext "delete" getTestLabel
+                    |> configureContext
       
      context.Request.Method.ReturnsForAnyArgs "DELETE" |> ignore
      context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -139,16 +128,13 @@ let ``/label/ DELETE should delete the label label correctly`` () =
            match result with
                    | None -> assertFailf "Result was expected to be %s" "[]"
                    | Some ctx ->
-                       let body = getBody ctx
-                       Assert.Contains("\"code\":\"Test\"", body)
-                       Assert.Equal("application/json", ctx.Response |> getContentType)
+                       getBody ctx
+                           |> shouldContains "\"code\":\"Test\""
            
          }   
         
 [<Fact>]
 let ``/label/id PUT should modify a label`` () =
-    initializeAndPopulateContext "update" getTestLabel;
-    
     let label = {   
                         Code = "TestUpdated"
                         IsoCode = "IT"
@@ -157,7 +143,7 @@ let ``/label/id PUT should modify a label`` () =
                     }
                     
     let postData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(label))
-    let context = initializeInMemoryContext "update" |> configureContext
+    let context = initializeAndPopulateContext "update" getTestLabel |> configureContext
     
     context.Request.Method.ReturnsForAnyArgs "PUT" |> ignore
     context.Request.Path.ReturnsForAnyArgs (PathString("/label/1")) |> ignore
@@ -169,8 +155,7 @@ let ``/label/id PUT should modify a label`` () =
           match result with
                   | None -> assertFailf "Result was expected to be %s" "[]"
                   | Some ctx ->
-                      let body = getBody ctx
-                      Assert.Contains("\"code\":\"TestUpdated\"", body)
-                      Assert.Equal("application/json", ctx.Response |> getContentType)
+                      getBody ctx
+                         |> shouldContains "\"code\":\"TestUpdated\""
           
         }  

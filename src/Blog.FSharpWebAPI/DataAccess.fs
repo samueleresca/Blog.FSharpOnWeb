@@ -7,7 +7,7 @@ type LabelsContext(options : DbContextOptions<LabelsContext>) =
     inherit DbContext(options)
     
     override __.OnModelCreating modelBuilder = 
-        let expr = modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj)
+        let _ = modelBuilder.Entity<Label>().HasKey(fun label -> (label.Id) :> obj)
         modelBuilder.Entity<Label>().Property(fun label -> label.Id).ValueGeneratedOnAdd() |> ignore
     
     [<DefaultValue>]
