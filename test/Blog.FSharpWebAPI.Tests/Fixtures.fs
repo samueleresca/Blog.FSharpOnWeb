@@ -1,79 +1,44 @@
 module Fixtures
 
-open Blog.FSharpWebAPI
 open Blog.FSharpWebAPI.Models
-open DataAccess
-open Microsoft.AspNetCore.Builder
-open Microsoft.AspNetCore.Hosting
-open Microsoft.AspNetCore.TestHost
-open Microsoft.EntityFrameworkCore
-open Microsoft.Extensions.DependencyInjection
-open System
-open System.IO
-open System.Net
-open System.Net.Http
 open Xunit
-
-
-let createHost() =
-    WebHostBuilder()
-        .UseContentRoot(Directory.GetCurrentDirectory())
-        .UseEnvironment("Test")
-        .Configure(Action<IApplicationBuilder> Blog.FSharpWebAPI.App.configureApp)
-        .ConfigureServices(Action<IServiceCollection> Blog.FSharpWebAPI.App.configureServices)
+open Microsoft.EntityFrameworkCore
+open Blog.FSharpWebAPI.DataAccess
+open Giraffe
+open System.Threading.Tasks
+open Microsoft.AspNetCore.Http
+open System.IO
 
 
 let getTestLabel = 
-    { Id = 0
+    { Id = 1
       Code = "Test"
       Content = "Test content"
       IsoCode = "IT"
       Inactive = false }
+
       
-      
-let runTask task = 
-    task
-    |> Async.AwaitTask
-    |> Async.RunSynchronously
+let initializeInMemoryContext (databaseName : string) = 
+    let builder = new DbContextOptionsBuilder<LabelsContext>()
+    let context = new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
+    context
 
-let get (client : HttpClient) (path : string) = 
-    path
-    |> client.GetAsync
-    |> runTask
-    
-let post (client : HttpClient) (path : string) (content: HttpContent) = 
-    client.PostAsync(path, content) |> runTask
-    
-let put (client : HttpClient) (path : string) (content: HttpContent) = 
-       client.PutAsync(path, content) |> runTask
+let populateContext (context : LabelsContext) (label : Label) = 
+      label
+          |> context.Labels.Add
+          |> ignore
+      context.SaveChanges() |> ignore
+      context
 
-let createRequest (method : HttpMethod) (path : string) = 
-    let url = "http://127.0.0.1" + path
-    new HttpRequestMessage(method, url)
+let initializeAndPopulateContext (databaseName:string) (label: Label) =  initializeInMemoryContext databaseName |> populateContext <| label
 
-let makeRequest (client : HttpClient) (request : HttpRequestMessage) = 
-    use server = new TestServer(createHost())
-    use client = server.CreateClient()
-    request
-    |> client.SendAsync
-    |> runTask
+let next : HttpFunc = Some >> Task.FromResult
 
-let ensureSuccess (response : HttpResponseMessage) = 
-    if not response.IsSuccessStatusCode then 
-        response.Content.ReadAsStringAsync()
-        |> runTask
-        |> failwithf "%A"
-    else response
+let getBody (ctx : HttpContext) =
+    ctx.Response.Body.Position <- 0L
+    use reader = new StreamReader(ctx.Response.Body, System.Text.Encoding.UTF8)
+    reader.ReadToEnd()
 
-let isStatus (code : HttpStatusCode) (response : HttpResponseMessage) = 
-    Assert.Equal(code, response.StatusCode)
-    response
-
-let isOfType (contentType : string) (response : HttpResponseMessage) = 
-    Assert.Equal(contentType, response.Content.Headers.ContentType.MediaType)
-    response
-
-let readText (response : HttpResponseMessage) = response.Content.ReadAsStringAsync() |> runTask
 let shouldContains actual expected = Assert.Contains(actual, expected) 
 let shouldEqual expected actual = Assert.Equal(expected, actual)
 let shouldNotNull expected = Assert.NotNull(expected)

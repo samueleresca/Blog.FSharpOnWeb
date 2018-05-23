@@ -1,41 +1,20 @@
 module HandlersTests
 
-open Microsoft.EntityFrameworkCore
 open Xunit
 open Blog.FSharpWebAPI
 open Blog.FSharpWebAPI.RequestModels
-open DataAccess
 open Fixtures
 open Giraffe
 open Giraffe.Serialization.Json
 open Microsoft.AspNetCore.Http
 open NSubstitute
 open Newtonsoft.Json
-open System.Threading.Tasks
+open Blog.FSharpWebAPI.DataAccess
 open System.IO
 open System.Text
-open Blog.FSharpWebAPI.Models
 
 
-let initializeInMemoryContext (databaseName : string) = 
-    let builder = new DbContextOptionsBuilder<LabelsContext>()
-    let context = new LabelsContext(builder.UseInMemoryDatabase(databaseName).Options)
-    context
 
-let populateContext (context : LabelsContext) (label : Label) = 
-      label
-          |> context.Labels.Add
-          |> ignore
-      context.SaveChanges() |> ignore
-
-let initializeAndPopulateContext (databaseName:string) (label: Label) =  initializeInMemoryContext databaseName |> populateContext <| label
-
-let next : HttpFunc = Some >> Task.FromResult
-
-let getBody (ctx : HttpContext) =
-    ctx.Response.Body.Position <- 0L
-    use reader = new StreamReader(ctx.Response.Body, Encoding.UTF8)
-    reader.ReadToEnd()
     
 let assertFailf format args =
     let msg = sprintf format args

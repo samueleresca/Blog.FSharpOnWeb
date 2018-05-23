@@ -1,13 +1,25 @@
 module ClientTests
 
-open System
 open System.Net.Http
 open System.Text
 open Microsoft.AspNetCore.TestHost
 open Xunit
 open Newtonsoft.Json
 open Fixtures
+open HttpFunc
 open Blog.FSharpWebAPI.RequestModels
+open Microsoft.AspNetCore.Builder
+open Microsoft.AspNetCore.Hosting
+open Microsoft.Extensions.DependencyInjection
+open System
+open System.IO
+
+let createHost() =
+    WebHostBuilder()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseEnvironment("Test")
+        .Configure(Action<IApplicationBuilder> Blog.FSharpWebAPI.App.configureApp)
+        .ConfigureServices(Action<IServiceCollection> Blog.FSharpWebAPI.App.configureServices)
 
 
 [<Fact>]
@@ -55,5 +67,19 @@ let ``/label/id PUT should modify a label`` () =
     |> ensureSuccess
     |> readText
     |> shouldContains "\"code\":\"TestUpdated\""
+
+
+       
+[<Fact>]
+let ``DELETE /label/id should modify a label`` () =
+    use server = new TestServer(createHost())
+    use client = server.CreateClient()
+    let content = new StringContent(JsonConvert.SerializeObject(getTestLabel), Encoding.UTF8, "application/json")
+    
+    post client "label" content |> ignore
+    delete client "label/1"
+    |> ensureSuccess
+    |> readText
+    |> shouldContains "\"inactive\":true"
 
 

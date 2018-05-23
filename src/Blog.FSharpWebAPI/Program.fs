@@ -56,8 +56,8 @@ let configureServices (services : IServiceCollection) =
     services.AddDbContext<LabelsContext>
         (fun (options : DbContextOptionsBuilder) -> 
         match env.IsEnvironment("Test") with
-        | true -> options.UseInMemoryDatabase("client_tests_"+Guid.NewGuid().ToString()) |> ignore
-        | false -> options.UseSqlServer(@"Server=localhost;Database=ContentDataDB2;User Id=sa;Password=P@55w0rd;") |> ignore)
+        | true -> options.UseInMemoryDatabase("client_tests") |> ignore
+        | false -> options.UseSqlServer(@"Data Source=(localdb)\v11.0;Initial Catalog=ContentDataDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") |> ignore)
     |> ignore
     services.AddCors() |> ignore
     services.AddGiraffe() |> ignore
