@@ -3,6 +3,7 @@ open System.Net
 open System.Net.Http
 open Xunit
 
+    
 
 let runTask task = 
     task
@@ -43,4 +44,3 @@ let isOfType (response : HttpResponseMessage) (contentType : string)  =
     response
 
 let readText (response : HttpResponseMessage) = response.Content.ReadAsStringAsync() |> runTask
-

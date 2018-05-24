@@ -8,6 +8,9 @@ open Giraffe
 open System.Threading.Tasks
 open Microsoft.AspNetCore.Http
 open System.IO
+open Giraffe.Serialization.Json
+open NSubstitute
+    
 
 
 let getTestLabel = 
@@ -38,6 +41,20 @@ let getBody (ctx : HttpContext) =
     ctx.Response.Body.Position <- 0L
     use reader = new StreamReader(ctx.Response.Body, System.Text.Encoding.UTF8)
     reader.ReadToEnd()
+    
+let assertFailf format args =
+    let msg = sprintf format args
+    Assert.True(false, msg)
+    
+
+let configureContext (dbContext : LabelsContext) = 
+        let context = Substitute.For<HttpContext>();
+        context.RequestServices.GetService(typeof<LabelsContext>).Returns(dbContext) |> ignore
+        context.RequestServices.GetService(typeof<IJsonSerializer>).Returns(NewtonsoftJsonSerializer(NewtonsoftJsonSerializer.DefaultSettings)) |> ignore
+        context.Response.Body <- new MemoryStream()
+        context.Request.Headers.ReturnsForAnyArgs(new HeaderDictionary()) |> ignore
+        context
+    
 
 let shouldContains actual expected = Assert.Contains(actual, expected) 
 let shouldEqual expected actual = Assert.Equal(expected, actual)
